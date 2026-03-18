@@ -2,6 +2,8 @@
 
 My macOS dotfiles
 
+![screenshot](screenshots/ricer.png)
+
 ## Contents
 
 | Tool | Purpose |
