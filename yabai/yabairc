@@ -1,0 +1,50 @@
+#!/bin/bash
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# Layout
+yabai -m config layout bsp
+
+# Padding — top_padding set dynamically by reset_padding.sh (varies by display setup)
+yabai -m config bottom_padding 10
+yabai -m config left_padding 10
+yabai -m config right_padding 10
+yabai -m config window_gap 10
+
+# Mouse
+yabai -m config mouse_follows_focus off
+yabai -m config focus_follows_mouse autofocus
+
+# Appearance
+yabai -m config menubar_opacity 0.0
+yabai -m config window_shadow on
+yabai -m config window_animation_duration 0.18
+yabai -m config window_animation_easing ease_in_out_cubic
+
+# Set top padding based on display setup, evaluate initial window padding
+"$HOME/.config/yabai/scripts/reset_padding.sh"
+
+# Single window centering (ultrawide)
+yabai -m signal --add event=window_created action="$HOME/.config/yabai/scripts/adjust_padding.sh"
+yabai -m signal --add event=window_destroyed action="$HOME/.config/yabai/scripts/adjust_padding.sh"
+yabai -m signal --add event=space_changed action="$HOME/.config/yabai/scripts/adjust_padding.sh"
+yabai -m signal --add event=display_added action="$HOME/.config/yabai/scripts/reset_padding.sh"
+yabai -m signal --add event=display_removed action="$HOME/.config/yabai/scripts/reset_padding.sh"
+
+# Float windows that shouldn't be tiled
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Calendar$" manage=off
+yabai -m rule --add app="^Bitwarden$" manage=off
+
+# Bitwarden browser extension popups (Chrome, Firefox, Edge)
+yabai -m rule --add app="^Google Chrome$" title="Bitwarden" manage=off
+yabai -m rule --add app="^Firefox$" title="Bitwarden" manage=off
+yabai -m rule --add app="^Microsoft Edge$" title="Bitwarden" manage=off
+yabai -m signal --add event=window_created app="^Google Chrome$" title="Bitwarden" action='yabai -m window "$YABAI_WINDOW_ID" --grid 6:6:2:1:2:4'
+yabai -m signal --add event=window_created app="^Firefox$" title="Bitwarden" action='yabai -m window "$YABAI_WINDOW_ID" --grid 6:6:2:1:2:4'
+yabai -m signal --add event=window_created app="^Microsoft Edge$" title="Bitwarden" action='yabai -m window "$YABAI_WINDOW_ID" --grid 6:6:2:1:2:4'
+yabai -m rule --add app="^Messages$" manage=off
