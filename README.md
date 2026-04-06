@@ -6,7 +6,7 @@ My macOS dotfiles
 ![screenshot](screenshots/ricer.png)
 
 ### rose pine dawn
-![screenshot](screenshots/light-ricer.png)
+![screenshot](screenshots/light-ricer.jpg)
 
 ## Contents
 
