@@ -13,8 +13,11 @@ yabai -m config right_padding 10
 yabai -m config window_gap 10
 
 # Mouse
-yabai -m config mouse_follows_focus off
+yabai -m config mouse_follows_focus on
 yabai -m config focus_follows_mouse autofocus
+
+# Re-assert focus_follows_mouse after events that can break it
+yabai -m signal --add event=application_activated action="yabai -m config focus_follows_mouse autofocus"
 
 # Appearance
 yabai -m config menubar_opacity 0.0
@@ -39,6 +42,11 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Calendar$" manage=off
 yabai -m rule --add app="^Bitwarden$" manage=off
+yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^Tailscale$" manage=off
+yabai -m rule --add app="^Phone$" manage=off
+yabai -m rule --add app="^FaceTime$" manage=off
+yabai -m rule --add app="^Preview$" manage=off
 
 # Bitwarden browser extension popups (Chrome, Firefox, Edge)
 yabai -m rule --add app="^Google Chrome$" title="Bitwarden" manage=off
@@ -47,4 +55,3 @@ yabai -m rule --add app="^Microsoft Edge$" title="Bitwarden" manage=off
 yabai -m signal --add event=window_created app="^Google Chrome$" title="Bitwarden" action='yabai -m window "$YABAI_WINDOW_ID" --grid 6:6:2:1:2:4'
 yabai -m signal --add event=window_created app="^Firefox$" title="Bitwarden" action='yabai -m window "$YABAI_WINDOW_ID" --grid 6:6:2:1:2:4'
 yabai -m signal --add event=window_created app="^Microsoft Edge$" title="Bitwarden" action='yabai -m window "$YABAI_WINDOW_ID" --grid 6:6:2:1:2:4'
-yabai -m rule --add app="^Messages$" manage=off

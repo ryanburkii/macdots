@@ -1,0 +1,132 @@
+#!/bin/bash
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+THEMES_DIR="$HOME/.config/themes"
+THEMES=(nord rosepine)
+
+# Determine target theme
+if [[ -n "$1" ]]; then
+  TARGET="$1"
+else
+  CURRENT=$(cat "$THEMES_DIR/current" 2>/dev/null || echo "nord")
+  CURRENT="${CURRENT%$'\n'}"
+  for i in "${!THEMES[@]}"; do
+    if [[ "${THEMES[$i]}" == "$CURRENT" ]]; then
+      TARGET="${THEMES[$(( (i + 1) % ${#THEMES[@]} ))]}"
+      break
+    fi
+  done
+  TARGET="${TARGET:-nord}"
+fi
+
+if [[ ! -f "$THEMES_DIR/$TARGET.sh" ]]; then
+  echo "Unknown theme: $TARGET. Available: ${THEMES[*]}" >&2
+  exit 1
+fi
+
+# Load old theme for starship color swap
+OLD_THEME=$(cat "$THEMES_DIR/current" 2>/dev/null || echo "nord")
+OLD_THEME="${OLD_THEME%$'\n'}"
+# shellcheck source=/dev/null
+source "$THEMES_DIR/$OLD_THEME.sh"
+OLD_STARSHIP_COLOR="$STARSHIP_COLOR"
+
+# Load new theme
+# shellcheck source=/dev/null
+source "$THEMES_DIR/$TARGET.sh"
+
+# ── Write current ────────────────────────────────────────────────────────────
+echo "$TARGET" > "$THEMES_DIR/current"
+
+# ── Ghostty (hot-reloads on file change) ─────────────────────────────────────
+sed -i '' -E "s|^theme = .*|theme = $GHOSTTY_THEME|" "$HOME/.config/ghostty/config"
+
+# ── Starship ─────────────────────────────────────────────────────────────────
+sed -i '' "s|$OLD_STARSHIP_COLOR|$STARSHIP_COLOR|g" "$HOME/.config/starship.toml"
+
+# ── Sketchybar ───────────────────────────────────────────────────────────────
+cat > "$HOME/.config/sketchybar/colors.sh" <<EOF
+BAR_COLOR=$BAR_COLOR
+FG_COLOR=$FG_COLOR
+FG_DIM=$FG_DIM
+ACCENT=$ACCENT
+POPUP_BG=$POPUP_BG
+POPUP_BORDER=$POPUP_BORDER
+TAILSCALE_COLOR=$TAILSCALE_COLOR
+EOF
+sketchybar --reload
+
+# ── Borders ──────────────────────────────────────────────────────────────────
+sed -i '' -E "s|active_color=0x[0-9a-f]+|active_color=$BORDER_ACTIVE|" "$HOME/.config/borders/bordersrc"
+sed -i '' -E "s|inactive_color=0x[0-9a-f]+|inactive_color=$BORDER_INACTIVE|" "$HOME/.config/borders/bordersrc"
+killall borders 2>/dev/null || true
+sleep 0.1
+nohup "$HOME/.config/borders/bordersrc" >/dev/null 2>&1 &
+disown $!
+
+# ── Wallpaper ────────────────────────────────────────────────────────────────
+if [[ -f "$WALLPAPER" ]]; then
+  python3 - "$WALLPAPER" <<'PYEOF'
+import plistlib, sys, os
+
+wallpaper = sys.argv[1]
+plist_path = os.path.expanduser(
+    "~/Library/Application Support/com.apple.wallpaper/Store/Index.plist"
+)
+new_url = f"file://{wallpaper}"
+
+with open(plist_path, "rb") as f:
+    data = plistlib.load(f)
+
+def update_configs(obj):
+    if isinstance(obj, dict):
+        if "Configuration" in obj:
+            try:
+                cfg = plistlib.loads(obj["Configuration"])
+                if cfg.get("type") == "imageFile":
+                    cfg["url"]["relative"] = new_url
+                    obj["Configuration"] = plistlib.dumps(cfg, fmt=plistlib.FMT_BINARY)
+            except Exception:
+                pass
+        for v in obj.values():
+            update_configs(v)
+    elif isinstance(obj, list):
+        for item in obj:
+            update_configs(item)
+
+update_configs(data)
+
+with open(plist_path, "wb") as f:
+    plistlib.dump(data, f, fmt=plistlib.FMT_BINARY)
+PYEOF
+  killall WallpaperAgent
+fi
+
+# ── btop ─────────────────────────────────────────────────────────────────────
+sed -i '' -E "s|^color_theme = .*|color_theme = \"$BTOP_THEME\"|" "$HOME/.config/btop/btop.conf"
+pkill -USR2 btop 2>/dev/null || true
+
+# ── textfox (Firefox needs restart to apply) ─────────────────────────────────
+FF_CHROME="/Users/burkii/Library/Application Support/Firefox/Profiles/zy3qkbrk.textfox/chrome"
+cp "$THEMES_DIR/textfox-$TARGET.css" "$FF_CHROME/config.css"
+cp "$THEMES_DIR/textfox-$TARGET.css" "$HOME/textfox/chrome/config.css"
+
+# ── Spotatui ─────────────────────────────────────────────────────────────────
+SPOTATUI_CONFIG="$HOME/.config/spotatui/config.yml"
+sed -i '' -E "s|^(  active:).*|\1 $SPOTATUI_ACTIVE|"                 "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  banner:).*|\1 $SPOTATUI_BANNER|"                 "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  error_border:).*|\1 $SPOTATUI_ERROR|"            "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  error_text:).*|\1 $SPOTATUI_ERROR|"              "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  hint:).*|\1 $SPOTATUI_HINT|"                     "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  hovered:).*|\1 $SPOTATUI_HOVERED|"               "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  inactive:).*|\1 $SPOTATUI_INACTIVE|"             "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  playbar_progress:).*|\1 $SPOTATUI_PROGRESS|"     "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  playbar_progress_text:).*|\1 $SPOTATUI_PROGRESS_TEXT|" "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  playbar_text:).*|\1 $SPOTATUI_PLAYBAR_TEXT|"     "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  selected:).*|\1 $SPOTATUI_SELECTED|"             "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  text:).*|\1 $SPOTATUI_TEXT|"                     "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  header:).*|\1 $SPOTATUI_HEADER|"                 "$SPOTATUI_CONFIG"
+sed -i '' -E "s|^(  highlighted_lyrics:).*|\1 $SPOTATUI_LYRICS|"     "$SPOTATUI_CONFIG"
+
+echo "→ $TARGET (restart Firefox to apply textfox)"

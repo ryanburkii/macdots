@@ -1,3 +1,6 @@
+# === Theme ===
+alt + shift - t : ~/.config/themes/switch
+
 # === Application Launching ===
 alt - return : /Applications/Ghostty.app/Contents/MacOS/ghostty
 alt + shift - b : open -a "Firefox"
@@ -20,7 +23,6 @@ alt + shift - l : yabai -m window --swap east
 alt - e : yabai -m space --balance
 alt - t : yabai -m window --toggle float
 alt - f : yabai -m window --toggle zoom-fullscreen
-ctrl + alt - f : "$HOME/.config/yabai/scripts/toggle_padding.sh"
 
 # === Resize (hold ctrl + alt, tap direction) ===
 ctrl + alt - h : yabai -m window --resize left:-50:0

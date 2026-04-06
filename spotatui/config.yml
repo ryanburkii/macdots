@@ -24,7 +24,8 @@ keybindings:
   copy_song_url: c
   copy_album_url: C
   audio_analysis: v
-  basic_view: B
+  lyrics_view: B
+  cover_art_view: G
   add_item_to_queue: z
   show_queue: Q
   open_settings: ctrl-,

@@ -29,16 +29,19 @@ if [ "$display_index" -ne "$ULTRAWIDE_DISPLAY" ]; then
   exit 0
 fi
 
-# Respect manual override — don't touch padding if the user toggled it
-if [ -f "/tmp/yabai_padding_override_${space_index}" ]; then
-  exit 0
-fi
 
-window_count=$(yabai -m query --windows --space "$space_index" | jq '[.[] | select(."is-floating" == false)] | length')
+tiled_windows=$(yabai -m query --windows --space "$space_index" | jq '[.[] | select(."is-floating" == false and ."is-visible" == true)]')
+window_count=$(echo "$tiled_windows" | jq 'length')
 
 if [ "$window_count" -eq 1 ]; then
-  yabai -m config --space "$space_index" left_padding $SINGLE_PADDING
-  yabai -m config --space "$space_index" right_padding $SINGLE_PADDING
+  single_app=$(echo "$tiled_windows" | jq -r '.[0].app')
+  if [ "$single_app" = "Ghostty" ]; then
+    yabai -m config --space "$space_index" left_padding $NORMAL_PADDING
+    yabai -m config --space "$space_index" right_padding $NORMAL_PADDING
+  else
+    yabai -m config --space "$space_index" left_padding $SINGLE_PADDING
+    yabai -m config --space "$space_index" right_padding $SINGLE_PADDING
+  fi
 else
   yabai -m config --space "$space_index" left_padding $NORMAL_PADDING
   yabai -m config --space "$space_index" right_padding $NORMAL_PADDING

@@ -1,0 +1,92 @@
+/* Rose Pine Dawn Theme for textfox */
+/* https://rosepinetheme.com */
+
+:root {
+  /* Rose Pine Dawn palette */
+  --rp-base:    #faf4ed;
+  --rp-surface: #fffaf3;
+  --rp-overlay: #f2e9e1;
+  --rp-muted:   #9893a5;
+  --rp-subtle:  #797593;
+  --rp-text:    #575279;
+  --rp-love:    #b4637a;
+  --rp-gold:    #ea9d34;
+  --rp-rose:    #d7827e;
+  --rp-pine:    #286983;
+  --rp-foam:    #56949f;
+  --rp-iris:    #907aa9;
+  --rp-hl-low:  #f4ede8;
+  --rp-hl-med:  #dfdad9;
+  --rp-hl-high: #cecacd;
+
+  /* textfox overrides */
+  --tf-bg:     var(--rp-base)   !important;
+  --tf-accent: var(--rp-pine)   !important;
+  --tf-border: var(--rp-hl-med) !important;
+
+  /* Firefox chrome color overrides */
+  --lwt-accent-color:               var(--rp-base)    !important;
+  --toolbar-bgcolor:                var(--rp-base)    !important;
+  --toolbar-color:                  var(--rp-text)    !important;
+  --toolbar-field-color:            var(--rp-text)    !important;
+  --toolbar-field-background-color: var(--rp-surface) !important;
+  --toolbar-field-border-color:     var(--rp-hl-med)  !important;
+  --toolbarbutton-icon-fill:        var(--rp-subtle)  !important;
+  --arrowpanel-background:          var(--rp-surface) !important;
+  --arrowpanel-color:               var(--rp-text)    !important;
+  --arrowpanel-border-color:        var(--rp-hl-med)  !important;
+
+  /* tabs */
+  --tab-selected-bgcolor:        var(--rp-overlay) !important;
+  --tab-hover-background-color:  color-mix(in hsl, var(--rp-overlay) 60%, var(--rp-base)) !important;
+
+  /* container colors */
+  [data-color="yellow"],
+  .identity-color-yellow {
+    --color: var(--rp-gold) !important;
+    --identity-tab-color:  var(--rp-gold) !important;
+    --identity-icon-color: var(--rp-gold) !important;
+  }
+  [data-color="purple"],
+  .identity-color-purple {
+    --color: var(--rp-iris) !important;
+    --identity-tab-color:  var(--rp-iris) !important;
+    --identity-icon-color: var(--rp-iris) !important;
+  }
+  [data-color="blue"],
+  .identity-color-blue {
+    --color: var(--rp-foam) !important;
+    --identity-tab-color:  var(--rp-foam) !important;
+    --identity-icon-color: var(--rp-foam) !important;
+  }
+  [data-color="turquoise"],
+  .identity-color-turquoise {
+    --color: var(--rp-pine) !important;
+    --identity-tab-color:  var(--rp-pine) !important;
+    --identity-icon-color: var(--rp-pine) !important;
+  }
+  [data-color="green"],
+  .identity-color-green {
+    --color: var(--rp-foam) !important;
+    --identity-tab-color:  var(--rp-foam) !important;
+    --identity-icon-color: var(--rp-foam) !important;
+  }
+  [data-color="orange"],
+  .identity-color-orange {
+    --color: var(--rp-gold) !important;
+    --identity-tab-color:  var(--rp-gold) !important;
+    --identity-icon-color: var(--rp-gold) !important;
+  }
+  [data-color="red"],
+  .identity-color-red {
+    --color: var(--rp-love) !important;
+    --identity-tab-color:  var(--rp-love) !important;
+    --identity-icon-color: var(--rp-love) !important;
+  }
+  [data-color="pink"],
+  .identity-color-pink {
+    --color: var(--rp-rose) !important;
+    --identity-tab-color:  var(--rp-rose) !important;
+    --identity-icon-color: var(--rp-rose) !important;
+  }
+}
