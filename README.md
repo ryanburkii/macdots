@@ -2,11 +2,12 @@
 
 My macOS dotfiles
 
-Nord
+### nord
 ![screenshot](screenshots/ricer.png)
 
-Rose Pine Dawn
+### rose pine dawn
 ![screenshot](screenshots/light-ricer.png)
+
 ## Contents
 
 | Tool | Purpose |
