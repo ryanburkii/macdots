@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "$CONFIG_DIR/colors.sh"
+
 case "$SENDER" in
   "mouse.entered")
     sketchybar --set "$NAME" popup.drawing=on
@@ -33,7 +35,7 @@ if [ "$CHARGING" != "" ]; then
   elif [ "$PERCENTAGE" -ge 10 ]; then ICON="󰂆"
   else                                 ICON="󰢜"
   fi
-  sketchybar --set "$NAME" icon="$ICON" icon.color=0xfff8f8f2
+  sketchybar --set "$NAME" icon="$ICON" icon.color=$FG_COLOR
 else
   STATUS="On Battery"
   if   [ "$PERCENTAGE" -ge 95 ]; then ICON="󰁹"
@@ -49,9 +51,9 @@ else
   fi
 
   if [ "$PERCENTAGE" -le 20 ]; then
-    sketchybar --set "$NAME" icon="$ICON" icon.color=0xffff5555
+    sketchybar --set "$NAME" icon="$ICON" icon.color=0xffd20f39
   else
-    sketchybar --set "$NAME" icon="$ICON" icon.color=0xfff8f8f2
+    sketchybar --set "$NAME" icon="$ICON" icon.color=$FG_COLOR
   fi
 fi
 
