@@ -2,10 +2,16 @@
 
 My macOS dotfiles
 
+### catppuccin latte
+
+![screenshot](screenshots/catppuccin_latte_sc.jpg)
+
 ### nord
+
 ![screenshot](screenshots/ricer.png)
 
 ### rose pine dawn
+
 ![screenshot](screenshots/light-ricer.jpg)
 
 ## Contents
@@ -26,3 +32,11 @@ My macOS dotfiles
 ## Setup
 
 Clone the repo and place the files in ~/.config
+
+### Note
+
+[stylus](https://github.com/openstyles/stylus) is used alongside textfox to apply catppuccin latte styling to websites.
+
+1. install the stylus extension for chrome/firefox
+2. Open stylus → manage
+3. Click **restore** and select `textfox/import.json` from this repo

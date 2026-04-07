@@ -67,19 +67,19 @@ behavior:
   draw_cover_art: true
   draw_cover_art_forced: false
 theme:
-  active: 163, 190, 140
-  banner: 136, 192, 208
-  error_border: 191, 97, 106
-  error_text: 191, 97, 106
-  hint: 235, 203, 139
-  hovered: 180, 142, 173
-  inactive: 76, 86, 106
+  active: 136, 57, 239
+  banner: 4, 165, 229
+  error_border: 210, 15, 57
+  error_text: 210, 15, 57
+  hint: 223, 142, 29
+  hovered: 136, 57, 239
+  inactive: 156, 160, 176
   playbar_background: Reset
-  playbar_progress: 136, 192, 208
-  playbar_progress_text: 236, 239, 244
-  playbar_text: 236, 239, 244
-  selected: 129, 161, 193
-  text: 236, 239, 244
+  playbar_progress: 4, 165, 229
+  playbar_progress_text: 76, 79, 105
+  playbar_text: 76, 79, 105
+  selected: 136, 57, 239
+  text: 76, 79, 105
   background: Reset
-  header: 136, 192, 208
-  highlighted_lyrics: 136, 192, 208
+  header: 4, 165, 229
+  highlighted_lyrics: 4, 165, 229

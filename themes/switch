@@ -3,7 +3,7 @@
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 THEMES_DIR="$HOME/.config/themes"
-THEMES=(nord rosepine)
+THEMES=(nord rosepine catppuccin)
 
 # Determine target theme
 if [[ -n "$1" ]]; then
