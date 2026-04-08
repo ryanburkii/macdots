@@ -100,6 +100,38 @@ for i in 1 2 3 4 5 6; do
     label.padding_right=12
 done
 
+##### Right: Theme Picker #####
+PALETTE_ICON=$(printf '\xef\x87\xbc')  # nf-fa-paint_brush
+CHECK_ICON=$(printf '\xef\x80\x8c')    # nf-fa-check
+sketchybar --add item theme right \
+  --set theme \
+  icon="$PALETTE_ICON" \
+  label.drawing=off \
+  icon.color=$ACCENT \
+  popup.background.color=$POPUP_BG \
+  popup.background.border_width=1 \
+  popup.background.border_color=$POPUP_BORDER \
+  popup.background.corner_radius=6 \
+  popup.y_offset=5 \
+  popup.align=right \
+  popup.height=22 \
+  click_script="$PLUGIN_DIR/theme.sh toggle"
+
+for THEME_NAME in nord rosepine catppuccin gruvbox-dark gruvbox-light; do
+  sketchybar --add item "theme.$THEME_NAME" popup.theme \
+    --set "theme.$THEME_NAME" \
+    icon="$CHECK_ICON" \
+    icon.drawing=off \
+    icon.color=$ACCENT \
+    icon.padding_left=4 \
+    icon.padding_right=0 \
+    width=170 \
+    label="$THEME_NAME" \
+    label.padding_left=6 \
+    label.padding_right=12 \
+    click_script="$PLUGIN_DIR/theme.sh pick $THEME_NAME"
+done
+
 ##### Right: Bluetooth #####
 sketchybar --add item bluetooth right \
   --set bluetooth \

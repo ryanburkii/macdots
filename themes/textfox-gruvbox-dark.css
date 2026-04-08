@@ -1,0 +1,91 @@
+/* Gruvbox Dark Theme for textfox */
+
+:root {
+  /* Gruvbox Dark palette */
+  --grv-bg:      #282828;
+  --grv-bg1:     #3c3836;
+  --grv-bg2:     #504945;
+  --grv-bg3:     #665c54;
+  --grv-bg4:     #7c6f64;
+  --grv-fg:      #ebdbb2;
+  --grv-fg1:     #ebdbb2;
+  --grv-gray:    #a89984;
+  --grv-red:     #fb4934;
+  --grv-green:   #b8bb26;
+  --grv-yellow:  #fabd2f;
+  --grv-blue:    #83a598;
+  --grv-purple:  #d3869b;
+  --grv-aqua:    #8ec07c;
+  --grv-orange:  #fe8019;
+
+  /* textfox overrides */
+  --tf-bg:     var(--grv-bg)     !important;
+  --tf-accent: var(--grv-yellow) !important;
+  --tf-border: var(--grv-bg2)    !important;
+
+  /* Firefox chrome color overrides */
+  --lwt-accent-color:               var(--grv-bg)    !important;
+  --toolbar-bgcolor:                var(--grv-bg)    !important;
+  --toolbar-color:                  var(--grv-fg)    !important;
+  --toolbar-field-color:            var(--grv-fg)    !important;
+  --toolbar-field-background-color: var(--grv-bg1)   !important;
+  --toolbar-field-border-color:     var(--grv-bg2)   !important;
+  --toolbarbutton-icon-fill:        var(--grv-gray)  !important;
+  --arrowpanel-background:          var(--grv-bg1)   !important;
+  --arrowpanel-color:               var(--grv-fg)    !important;
+  --arrowpanel-border-color:        var(--grv-bg2)   !important;
+
+  /* tabs */
+  --tab-selected-bgcolor:        var(--grv-bg2) !important;
+  --tab-hover-background-color:  color-mix(in hsl, var(--grv-bg2) 60%, var(--grv-bg)) !important;
+
+  /* container colors */
+  [data-color="yellow"],
+  .identity-color-yellow {
+    --color: var(--grv-yellow) !important;
+    --identity-tab-color:  var(--grv-yellow) !important;
+    --identity-icon-color: var(--grv-yellow) !important;
+  }
+  [data-color="purple"],
+  .identity-color-purple {
+    --color: var(--grv-purple) !important;
+    --identity-tab-color:  var(--grv-purple) !important;
+    --identity-icon-color: var(--grv-purple) !important;
+  }
+  [data-color="blue"],
+  .identity-color-blue {
+    --color: var(--grv-blue) !important;
+    --identity-tab-color:  var(--grv-blue) !important;
+    --identity-icon-color: var(--grv-blue) !important;
+  }
+  [data-color="turquoise"],
+  .identity-color-turquoise {
+    --color: var(--grv-aqua) !important;
+    --identity-tab-color:  var(--grv-aqua) !important;
+    --identity-icon-color: var(--grv-aqua) !important;
+  }
+  [data-color="green"],
+  .identity-color-green {
+    --color: var(--grv-green) !important;
+    --identity-tab-color:  var(--grv-green) !important;
+    --identity-icon-color: var(--grv-green) !important;
+  }
+  [data-color="orange"],
+  .identity-color-orange {
+    --color: var(--grv-orange) !important;
+    --identity-tab-color:  var(--grv-orange) !important;
+    --identity-icon-color: var(--grv-orange) !important;
+  }
+  [data-color="red"],
+  .identity-color-red {
+    --color: var(--grv-red) !important;
+    --identity-tab-color:  var(--grv-red) !important;
+    --identity-icon-color: var(--grv-red) !important;
+  }
+  [data-color="pink"],
+  .identity-color-pink {
+    --color: var(--grv-purple) !important;
+    --identity-tab-color:  var(--grv-purple) !important;
+    --identity-icon-color: var(--grv-purple) !important;
+  }
+}

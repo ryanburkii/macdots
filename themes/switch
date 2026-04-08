@@ -3,7 +3,7 @@
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 THEMES_DIR="$HOME/.config/themes"
-THEMES=(nord rosepine catppuccin)
+THEMES=(nord rosepine catppuccin gruvbox-dark gruvbox-light)
 
 # Determine target theme
 if [[ -n "$1" ]]; then
@@ -108,9 +108,13 @@ sed -i '' -E "s|^color_theme = .*|color_theme = \"$BTOP_THEME\"|" "$HOME/.config
 pkill -USR2 btop 2>/dev/null || true
 
 # ── textfox (Firefox needs restart to apply) ─────────────────────────────────
-FF_CHROME="/Users/burkii/Library/Application Support/Firefox/Profiles/zy3qkbrk.textfox/chrome"
-cp "$THEMES_DIR/textfox-$TARGET.css" "$FF_CHROME/config.css"
-cp "$THEMES_DIR/textfox-$TARGET.css" "$HOME/textfox/chrome/config.css"
+FF_PROFILE=$(find "$HOME/Library/Application Support/Firefox/Profiles" -maxdepth 1 -type d -name "*.textfox" 2>/dev/null | head -1)
+if [[ -n "$FF_PROFILE" ]]; then
+  cp "$THEMES_DIR/textfox-$TARGET.css" "$FF_PROFILE/chrome/config.css"
+fi
+if [[ -d "$HOME/textfox/chrome" ]]; then
+  cp "$THEMES_DIR/textfox-$TARGET.css" "$HOME/textfox/chrome/config.css"
+fi
 
 # ── Spotatui ─────────────────────────────────────────────────────────────────
 SPOTATUI_CONFIG="$HOME/.config/spotatui/config.yml"

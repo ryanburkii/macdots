@@ -1,6 +1,3 @@
-# === Theme ===
-alt + shift - t : ~/.config/themes/switch
-
 # === Application Launching ===
 alt - return : /Applications/Ghostty.app/Contents/MacOS/ghostty
 alt + shift - b : open -a "Firefox"

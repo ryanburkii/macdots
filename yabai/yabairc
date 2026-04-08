@@ -36,6 +36,7 @@ yabai -m signal --add event=display_added action="$HOME/.config/yabai/scripts/re
 yabai -m signal --add event=display_removed action="$HOME/.config/yabai/scripts/reset_padding.sh"
 
 # Float windows that shouldn't be tiled
+# Float windows that shouldn't be tiled
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off

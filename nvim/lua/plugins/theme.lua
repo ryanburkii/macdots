@@ -10,6 +10,9 @@ end
 
 local theme = active_theme()
 
+-- Set background before colorscheme loads
+vim.o.background = theme == "gruvbox-light" and "light" or "dark"
+
 return {
   {
     "shaunsingh/nord.nvim",
@@ -28,9 +31,26 @@ return {
     },
   },
   {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = {
+      flavour = "latte",
+      transparent_background = true,
+    },
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    opts = {
+      transparent_mode = true,
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = theme == "rosepine" and "rose-pine" or "nord",
+      colorscheme = theme == "rosepine" and "rose-pine"
+        or theme == "catppuccin" and "catppuccin-latte"
+        or (theme == "gruvbox-light" or theme == "gruvbox-dark") and "gruvbox"
+        or "nord",
     },
   },
 }
