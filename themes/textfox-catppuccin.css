@@ -39,7 +39,8 @@
   --toolbar-bgcolor:                var(--ctp-base)     !important;
   --toolbar-color:                  var(--ctp-text)     !important;
   --toolbar-field-color:            var(--ctp-text)     !important;
-  --toolbar-field-background-color: var(--ctp-mantle)   !important;
+  --toolbar-field-background-color:       var(--ctp-mantle)   !important;
+  --toolbar-field-focus-background-color: var(--ctp-mantle)   !important;
   --toolbar-field-border-color:     var(--ctp-surface0) !important;
   --toolbarbutton-icon-fill:        var(--ctp-subtext0) !important;
   --arrowpanel-background:          var(--ctp-mantle)   !important;
@@ -98,5 +99,35 @@
     --color: var(--ctp-pink) !important;
     --identity-tab-color:  var(--ctp-pink) !important;
     --identity-icon-color: var(--ctp-pink) !important;
+  }
+}
+
+.urlbarView {
+  background-color: var(--ctp-mantle) !important;
+}
+
+#searchmode-switcher-button {
+  visibility: collapse !important;
+}
+
+@-moz-document url("about:home"), url("about:newtab") {
+  body {
+    background-color: var(--ctp-base) !important;
+    color: var(--ctp-text) !important;
+  }
+}
+
+@-moz-document url-prefix("about:preferences") {
+  :root {
+    --in-content-page-background:         var(--ctp-base)     !important;
+    --in-content-page-color:              var(--ctp-text)     !important;
+    --in-content-box-background:          var(--ctp-mantle)   !important;
+    --in-content-box-background-hover:    var(--ctp-surface0) !important;
+    --in-content-box-background-active:   var(--ctp-surface0) !important;
+    --in-content-border-color:            var(--ctp-surface1) !important;
+    --in-content-button-background:       var(--ctp-surface0) !important;
+    --in-content-button-background-hover: var(--ctp-surface1) !important;
+    --in-content-accent-color:            var(--ctp-blue)     !important;
+    color-scheme: light !important;
   }
 }

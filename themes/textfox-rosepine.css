@@ -29,8 +29,9 @@
   --toolbar-bgcolor:                var(--rp-base)    !important;
   --toolbar-color:                  var(--rp-text)    !important;
   --toolbar-field-color:            var(--rp-text)    !important;
-  --toolbar-field-background-color: var(--rp-surface) !important;
-  --toolbar-field-border-color:     var(--rp-hl-med)  !important;
+  --toolbar-field-background-color:       var(--rp-surface) !important;
+  --toolbar-field-focus-background-color: var(--rp-surface) !important;
+  --toolbar-field-border-color:           var(--rp-hl-med)  !important;
   --toolbarbutton-icon-fill:        var(--rp-subtle)  !important;
   --arrowpanel-background:          var(--rp-surface) !important;
   --arrowpanel-color:               var(--rp-text)    !important;
@@ -88,5 +89,35 @@
     --color: var(--rp-rose) !important;
     --identity-tab-color:  var(--rp-rose) !important;
     --identity-icon-color: var(--rp-rose) !important;
+  }
+}
+
+.urlbarView {
+  background-color: var(--rp-surface) !important;
+}
+
+#searchmode-switcher-button {
+  visibility: collapse !important;
+}
+
+@-moz-document url("about:home"), url("about:newtab") {
+  body {
+    background-color: var(--rp-base) !important;
+    color: var(--rp-text) !important;
+  }
+}
+
+@-moz-document url-prefix("about:preferences") {
+  :root {
+    --in-content-page-background:         var(--rp-base)    !important;
+    --in-content-page-color:              var(--rp-text)    !important;
+    --in-content-box-background:          var(--rp-surface) !important;
+    --in-content-box-background-hover:    var(--rp-overlay) !important;
+    --in-content-box-background-active:   var(--rp-overlay) !important;
+    --in-content-border-color:            var(--rp-hl-med)  !important;
+    --in-content-button-background:       var(--rp-overlay) !important;
+    --in-content-button-background-hover: var(--rp-hl-high) !important;
+    --in-content-accent-color:            var(--rp-pine)    !important;
+    color-scheme: light !important;
   }
 }

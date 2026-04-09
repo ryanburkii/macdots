@@ -116,6 +116,12 @@ if [[ -d "$HOME/textfox/chrome" ]]; then
   cp "$THEMES_DIR/textfox-$TARGET.css" "$HOME/textfox/chrome/config.css"
 fi
 
+# ── Stylus (import import-$TARGET.json in Stylus manager to apply) ───────────
+STYLUS_IMPORT="$HOME/.config/textfox/import-$TARGET.json"
+if [[ -f "$HOME/macdots/textfox/import-$TARGET.json" ]]; then
+  cp "$HOME/macdots/textfox/import-$TARGET.json" "$STYLUS_IMPORT" 2>/dev/null || true
+fi
+
 # ── Spotatui ─────────────────────────────────────────────────────────────────
 SPOTATUI_CONFIG="$HOME/.config/spotatui/config.yml"
 sed -i '' -E "s|^(  active:).*|\1 $SPOTATUI_ACTIVE|"                 "$SPOTATUI_CONFIG"
@@ -133,4 +139,4 @@ sed -i '' -E "s|^(  text:).*|\1 $SPOTATUI_TEXT|"                     "$SPOTATUI_
 sed -i '' -E "s|^(  header:).*|\1 $SPOTATUI_HEADER|"                 "$SPOTATUI_CONFIG"
 sed -i '' -E "s|^(  highlighted_lyrics:).*|\1 $SPOTATUI_LYRICS|"     "$SPOTATUI_CONFIG"
 
-echo "→ $TARGET (restart Firefox to apply textfox)"
+echo "→ $TARGET (restart Firefox to apply textfox + re-import Stylus from ~/.config/textfox/import-$TARGET.json)"

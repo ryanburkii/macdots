@@ -30,8 +30,9 @@
   --toolbar-bgcolor:               var(--nord-polar-night-0) !important;
   --toolbar-color:                 var(--nord-snow-storm-6)  !important;
   --toolbar-field-color:           var(--nord-snow-storm-6)  !important;
-  --toolbar-field-background-color: var(--nord-polar-night-1) !important;
-  --toolbar-field-border-color:    var(--nord-polar-night-2) !important;
+  --toolbar-field-background-color:       var(--nord-polar-night-1) !important;
+  --toolbar-field-focus-background-color: var(--nord-polar-night-1) !important;
+  --toolbar-field-border-color:           var(--nord-polar-night-2) !important;
   --toolbarbutton-icon-fill:       var(--nord-snow-storm-5)  !important;
   --arrowpanel-background:         var(--nord-polar-night-1) !important;
   --arrowpanel-color:              var(--nord-snow-storm-6)  !important;
@@ -89,5 +90,35 @@
     --color: var(--nord-frost-10) !important;
     --identity-tab-color: var(--nord-frost-10) !important;
     --identity-icon-color: var(--nord-frost-10) !important;
+  }
+}
+
+.urlbarView {
+  background-color: var(--nord-polar-night-1) !important;
+}
+
+#searchmode-switcher-button {
+  visibility: collapse !important;
+}
+
+@-moz-document url("about:home"), url("about:newtab") {
+  body {
+    background-color: var(--nord-polar-night-0) !important;
+    color: var(--nord-snow-storm-6) !important;
+  }
+}
+
+@-moz-document url-prefix("about:preferences") {
+  :root {
+    --in-content-page-background:         var(--nord-polar-night-0) !important;
+    --in-content-page-color:              var(--nord-snow-storm-6)  !important;
+    --in-content-box-background:          var(--nord-polar-night-1) !important;
+    --in-content-box-background-hover:    var(--nord-polar-night-2) !important;
+    --in-content-box-background-active:   var(--nord-polar-night-2) !important;
+    --in-content-border-color:            var(--nord-polar-night-2) !important;
+    --in-content-button-background:       var(--nord-polar-night-2) !important;
+    --in-content-button-background-hover: var(--nord-polar-night-3) !important;
+    --in-content-accent-color:            var(--nord-frost-8)       !important;
+    color-scheme: dark !important;
   }
 }
